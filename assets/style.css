@@ -1,0 +1,161 @@
+@media (min-width: 1000px) {
+  body {
+    width: 800px;
+    margin: 40px auto; }
+
+  p {
+    text-align: justify; } }
+@media not all and (min-width: 1000px) {
+  .github-corner {
+    display: none; } }
+body {
+  font-family: 'Montserrat', sans-serif; }
+
+code {
+  padding: 0.15em 0.25em;
+  border-radius: 0.25em;
+  color: #000000;
+  background: #e6e6e6; }
+
+pre {
+  background: #e6e6e6;
+  padding: 1em;
+  overflow-x: auto; }
+  pre code {
+    padding: 0;
+    border-radius: 0; }
+
+a:link, a:visited {
+  color: #000000; }
+
+a:hover {
+  color: #fd6301; }
+
+h2 .permalink, h3 .permalink, h4 .permalink, h5 .permalink, h5 .permalink {
+  margin-left: 5px;
+  text-decoration: none;
+  visibility: hidden; }
+  h2 .permalink::before, h3 .permalink::before, h4 .permalink::before, h5 .permalink::before, h5 .permalink::before {
+    content: "#"; }
+h2:target, h3:target, h4:target, h5:target, h5:target {
+  border-left: 5px solid #000000;
+  padding-left: 5px; }
+h2:hover .permalink, h3:hover .permalink, h4:hover .permalink, h5:hover .permalink, h5:hover .permalink {
+  visibility: visible; }
+
+#bin-table {
+  width: 100%; }
+  #bin-table th, #bin-table td {
+    padding: 0.2em 1em; }
+  #bin-table th {
+    text-align: left; }
+  #bin-table tbody tr:hover {
+    background: #e6e6e6; }
+  #bin-table #search-message {
+    display: none;
+    text-align: center;
+    padding: 1em; }
+
+.barra-pesquisa {
+  width: auto;
+  max-width: 850px;
+  background: #fff;
+  display: flex;
+  border: 1px solid #dfe1e5;
+  box-shadow: none;
+  border-radius: 24px;
+  z-index: 3;
+  height: 44px;
+  margin: 0 auto; }
+
+.barra-pesquisa-divisao {
+  flex: 1;
+  display: flex;
+  padding-top: 5px;
+  padding-right: 8px;
+  padding-bottom: 0px;
+  padding-left: 14px;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif; }
+
+.barra-pesquisa-texto {
+  flex: 1;
+  display: flex; }
+
+.span-lupa {
+  display: inline-block;
+  fill: currentColor;
+  color: #d31010; }
+
+#lupa {
+  display: flex;
+  width: 20px;
+  flex: 1;
+  display: flex;
+  padding-top: 8px;
+  color: #fd6301; }
+
+#bin-search {
+  display: flex;
+  white-space: pre;
+  height: 34px;
+  border: none;
+  flex-wrap: wrap;
+  flex: 100%;
+  padding-left: 10px; }
+
+.function-list {
+  font-size: 0.8rem;
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  .function-list li {
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    margin: 0.2em 0;
+    border: 1px solid #000000;
+    border-radius: 24px; }
+    .function-list li a:link, .function-list li a:visited {
+      color: #000000;
+      text-decoration: none; }
+    .function-list li:hover, .function-list li a:hover {
+      color: #fd6301;
+      border-color: #fd6301; }
+
+.examples {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  counter-reset: item;
+  margin: 0;
+  padding: 0; }
+  .examples li {
+    display: table-row; }
+    .examples li:not(:only-child):before {
+      display: table-cell;
+      font-size: 0.8rem;
+      font-weight: bold;
+      width: 3em;
+      text-align: center; }
+
+.logo {
+  float: right;
+  width: 100px;
+  height: 100px;
+  margin-left: 20px;
+  margin-bottom: 20px; }
+
+.bin-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  text-decoration: none; }
+
+.function-name {
+  font-size: 1.4rem;
+  font-weight: bold; }
+
+.github-buttons {
+  display: inline-block;
+  margin-left: 10px; }
+  .github-buttons a.github-button {
+    visibility: hidden; }

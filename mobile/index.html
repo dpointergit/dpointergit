@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            
+            
+            
+            
+            |
+            
+            dPointer
+        </title>
+        <link rel="icon" href="/assets/logo.png">
+        <link rel="stylesheet" href="/assets/style.css" type="text/css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    </head>
+    <body>
+        
+        <h1>
+    
+    
+</h1>
+
+
+<center><img src="/img/logo.png" width="20%" /></center>
+
+<div class="barra-pesquisa">
+    <div class="barra-pesquisa-divisao">
+        <div class="barra-pesquisa-lupa">
+            <span class="span-lupa">
+                <svg id="lupa" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg>        
+            </span>
+        </div>
+        <div class="barra-pesquisa-texto">
+            <input id="bin-search" type="text" placeholder="Encontre entre 3 empresas por nome (ex., 'Tech') ou por categoria (ex., '#informatica')" />
+        </div>
+        <div class="barra-pesquisa-teclado"></div>
+    </div>
+</div>
+<p><br /></p>
+<div id="bin-table-wrapper">
+    <table id="bin-table">
+        <thead>
+            <tr>
+                <th>Empresa</th>
+				<th>Tipo</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td><a href="/lolbas/Aut%C3%B4nomo/LuaraSoaresArt/" class="bin-name">Luara Soares Art</a></td>
+                <td hidden="true"><ul class="function-list">
+	
+	
+	
+	<li><a href="/lolbas/Aut%C3%B4nomo/LuaraSoaresArt/#desenho">Desenho</a></li>
+	
+	
+	<li><a href="/lolbas/Aut%C3%B4nomo/LuaraSoaresArt/#arte">Arte</a></li>
+	
+</ul>
+
+	</td>
+				<td>Autônomo</td>
+            </tr>
+            
+            <tr>
+                <td><a href="/lolbas/Empresa/Conectar/" class="bin-name">Conectar Fotografias</a></td>
+                <td hidden="true"><ul class="function-list">
+	
+	
+	
+	<li><a href="/lolbas/Empresa/Conectar/#fotografia">Fotografia</a></li>
+	
+</ul>
+
+	</td>
+				<td>Empresa</td>
+            </tr>
+            
+            <tr>
+                <td><a href="/lolbas/Empresa/Tech/" class="bin-name">Tech Informática</a></td>
+                <td hidden="true"><ul class="function-list">
+	
+	
+	
+	<li><a href="/lolbas/Empresa/Tech/#informatica">Informatica</a></li>
+	
+</ul>
+
+	</td>
+				<td>Empresa</td>
+            </tr>
+            
+        </tbody>
+        <tfoot>
+            <tr><td id="search-message" colspan="2">Nenhuma empresa encontrada...</td></tr>
+        </tfoot>
+    </table>
+</div>
+
+<script>
+ function filter(query) {
+     // consistently update the URL
+     location.hash = query;
+
+     // determine the query type
+     var queryType = query[0];
+     if (queryType === '/' || queryType === '#') {
+         query = query.slice(1);
+     }
+
+     // filter rows
+     var noResults = true;
+     document.querySelectorAll('#bin-table tbody tr').forEach(function (row) {
+         var binName = row.children[0].firstElementChild.innerText.toLowerCase();
+         var functions = Array.from(row.children[1].firstElementChild.children)
+                              .map(function (x) { return x.innerText })
+                              .join('\n').toLowerCase();
+
+	 var types = row.children[2].textContent.toLowerCase();
+         
+       //  if (queryType === '#')
+        //  {
+        //         var against = functions;
+        //  }
+        //  else if (queryType === '/')
+        //  {
+        //         var against = types;
+        //  }
+        //  else
+        //  {
+        //         var against = binName;
+        //  }
+        
+         // Aqui podemos ajustar a busca para ir em qualquer campo sem precisar definir caracteres speciais
+         if (functions.indexOf(query) !== -1 || types.indexOf(query) !== -1 || binName.indexOf(query) !== -1) {
+             row.style.display = '';
+             noResults = false;
+         } else {
+             row.style.display = 'none';
+         }
+     });
+
+     // update the search message visibility
+     var searchMessage = document.getElementById('search-message');
+     searchMessage.style.display = noResults ? 'table-cell' : 'none';
+ }
+
+ (function () {
+     var searchBox = document.getElementById('bin-search');
+
+     // ensure height during filtering
+     var binTableWrapper = document.getElementById('bin-table-wrapper');
+     binTableWrapper.style.height = binTableWrapper.clientHeight + 'px';
+
+     // handle user input
+     searchBox.addEventListener('input', function () {
+         var query = searchBox.value.toLowerCase().trim();
+         filter(query);
+     });
+
+     // handle shortcuts
+     addEventListener('keydown', function (event) {
+         // focus search box on valid keydown
+         if (event.key.toLowerCase().match(/^[\/a-z]$/) &&
+             !(event.ctrlKey || event.altKey || event.metaKey)) {
+             searchBox.focus();
+         }
+         // clear filter on escape
+         else if (event.key === 'Escape') {
+             searchBox.value = '';
+             searchBox.focus();
+             filter('');
+         }
+     });
+
+     // filter on load according to the URL
+     var query = decodeURIComponent(location.hash.slice(1));
+     filter(query);
+     if (query) {
+         searchBox.value = query;
+         searchBox.focus();
+     }
+ })();
+</script>
+
+
+        <script>
+         // add permalink on headings
+         document.querySelectorAll('h2, h3, h4, h5, h5').forEach((heading) => {
+             const link = document.createElement('a');
+             link.className = 'permalink';
+             link.href = `#${heading.id}`;
+             heading.appendChild(link);
+         });
+        </script>
+    </body>
+</html>
