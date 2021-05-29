@@ -1,8 +1,4 @@
 @media (min-width: 1000px) {
-  body {
-    width: 800px;
-    margin: 40px auto; }
-
   p {
     text-align: justify; } }
 @media not all and (min-width: 1000px) {
@@ -159,3 +155,7 @@ h2:hover .permalink, h3:hover .permalink, h4:hover .permalink, h5:hover .permali
   margin-left: 10px; }
   .github-buttons a.github-button {
     visibility: hidden; }
+
+.results {
+  width: 800px;
+  margin: 40px auto; }
