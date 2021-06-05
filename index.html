@@ -20,7 +20,7 @@
 
 
 <div align="right"> <a href="/apk/ccam-v1.0.apk"><img src="/img/android-name.png" width="100" /></a></div>
-<center><img src="/img/logo.png" width="20%" /></center>
+<center><img src="/img/logo.png" width="200" /></center>
 
 <p><br /></p>
 <div class="barra-pesquisa">
@@ -264,6 +264,7 @@
 
 <script>
  function filter(query) {
+
      // consistently update the URL
      location.hash = query;
 
@@ -275,6 +276,8 @@
 
      // filter rows
      var noResults = true;
+     var binTableWrapper = document.getElementById('bin-table-wrapper');
+     
      document.querySelectorAll('#bin-table tbody tr').forEach(function (row) {
          var binName = row.children[0].firstElementChild.innerText.toLowerCase();
          var functions = Array.from(row.children[1].firstElementChild.children)
@@ -282,21 +285,8 @@
                               .join('\n').toLowerCase();
 
 	 var types = row.children[2].textContent.toLowerCase();
-         
-        //  if (queryType === '#')
-        //  {
-        //         var against = functions;
-        //  }
-        //  else if (queryType === '/')
-        //  {
-        //         var against = types;
-        //  }
-        //  else
-        //  {
-        //         var against = binName;
-        //  }
-        
-         // Aqui podemos ajustar a busca para ir em qualquer campo sem precisar definir caracteres speciais
+
+     // Aqui podemos ajustar a busca para ir em qualquer campo sem precisar definir caracteres speciais
          if (functions.indexOf(query) !== -1 || types.indexOf(query) !== -1 || binName.indexOf(query) !== -1) {
              row.style.display = '';
              noResults = false;
@@ -316,10 +306,15 @@
      // ensure height during filtering
      var binTableWrapper = document.getElementById('bin-table-wrapper');
      binTableWrapper.style.height = binTableWrapper.clientHeight + 'px';
+     binTableWrapper.style.visibility = 'hidden';
 
      // handle user input
      searchBox.addEventListener('input', function () {
          var query = searchBox.value.toLowerCase().trim();
+         binTableWrapper.style.visibility = 'visible';
+         if (searchBox.value == '') {
+            binTableWrapper.style.visibility = 'hidden';
+         }
          filter(query);
      });
 
@@ -335,6 +330,7 @@
              searchBox.value = '';
              searchBox.focus();
              filter('');
+             binTableWrapper.style.visibility = 'hidden';
          }
      });
 
