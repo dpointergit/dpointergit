@@ -54,7 +54,7 @@ h2:hover .permalink, h3:hover .permalink, h4:hover .permalink, h5:hover .permali
 
 .barra-pesquisa {
   width: auto;
-  max-width: 850px;
+  max-width: 70%;
   background: #fff;
   display: flex;
   border: 1px solid #dfe1e5;
